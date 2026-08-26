@@ -10,7 +10,7 @@ export const brand = {
 export const contact = {
   address: 'Munayam Road, Aaram Kallu, Thrissur 680620',
   phones: ['+91 98509 40368'],
-  email: 'info@threesixeight.in',
+  email: 'buzzjomy@gmail.com',
   hours: [
     { days: 'Monday - Saturday', time: '09:30 AM - 06:30 PM' },
     { days: 'Sunday', time: '10:00 AM - 05:00 PM' },
