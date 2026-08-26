@@ -12,4 +12,5 @@ export type RootStackParamList = {
   About: undefined;
   Appointment: undefined;
   ServiceDetail: { serviceId: string };
+  BlogDetail: { postId: string };
 };

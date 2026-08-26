@@ -57,7 +57,7 @@ export function ContactScreen() {
           value={contact.phones.join(' / ')}
           onPress={() => call(contact.phones[0])}
         />
-        <ContactRow icon="logo-whatsapp" label="WhatsApp" value={contact.phones[2]} onPress={whatsapp} />
+        <ContactRow icon="logo-whatsapp" label="WhatsApp" value={contact.phones[0]} onPress={whatsapp} />
         <ContactRow icon="mail-outline" label="Email" value={contact.email} onPress={email} />
         <ContactRow icon="location-outline" label="Address" value={contact.address} onPress={openMaps} />
       </Section>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: radii.sm,
-    backgroundColor: '#F1E7D6',
+    backgroundColor: '#F6DCE6',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -134,6 +134,6 @@ const styles = StyleSheet.create({
   },
   hoursTime: {
     ...typography.bodySmall,
-    color: '#C7C6D6',
+    color: '#E3B0C4',
   },
 });

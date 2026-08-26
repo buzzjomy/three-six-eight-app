@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, radii, spacing, typography } from '../theme/theme';
 import type { BlogPost, Service } from '../data/content';
 
@@ -43,9 +43,7 @@ export function ServiceCard({ service, onPress }: { service: Service; onPress?: 
       onPress={onPress}
       style={({ pressed }) => [styles.serviceCard, pressed && styles.pressed]}
     >
-      <View style={styles.iconBadge}>
-        <Ionicons name={service.icon} size={22} color={colors.accentDark} />
-      </View>
+      <Image source={service.image} style={styles.serviceThumb} resizeMode="cover" />
       <View style={styles.serviceTextWrap}>
         <Text style={styles.serviceTitle}>{service.name}</Text>
         <Text style={styles.serviceSummary}>{service.summary}</Text>
@@ -55,13 +53,19 @@ export function ServiceCard({ service, onPress }: { service: Service; onPress?: 
   );
 }
 
-export function BlogCard({ post }: { post: BlogPost }) {
+export function BlogCard({ post, onPress }: { post: BlogPost; onPress?: () => void }) {
   return (
-    <View style={styles.blogCard}>
-      <Text style={styles.blogTitle}>{post.title}</Text>
-      <Text style={styles.blogExcerpt}>{post.excerpt}</Text>
-      <Text style={styles.blogMeta}>{post.readTime}</Text>
-    </View>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.blogCard, pressed && styles.pressed]}
+    >
+      <Image source={post.image} style={styles.blogThumb} resizeMode="cover" />
+      <View style={styles.blogTextWrap}>
+        <Text style={styles.blogTitle}>{post.title}</Text>
+        <Text style={styles.blogExcerpt}>{post.excerpt}</Text>
+        <Text style={styles.blogMeta}>{post.readTime}</Text>
+      </View>
+    </Pressable>
   );
 }
 
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: radii.sm,
-    backgroundColor: '#F1E7D6',
+    backgroundColor: '#F6DCE6',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -131,6 +135,12 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.8,
   },
+  serviceThumb: {
+    width: 56,
+    height: 56,
+    borderRadius: radii.md,
+    backgroundColor: colors.border,
+  },
   serviceTextWrap: {
     flex: 1,
   },
@@ -144,12 +154,23 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   blogCard: {
+    flexDirection: 'row',
+    gap: spacing.md,
     backgroundColor: colors.surface,
     borderRadius: radii.md,
     padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
     marginTop: spacing.sm,
+  },
+  blogThumb: {
+    width: 72,
+    height: 72,
+    borderRadius: radii.md,
+    backgroundColor: colors.border,
+  },
+  blogTextWrap: {
+    flex: 1,
   },
   blogTitle: {
     ...typography.h2,

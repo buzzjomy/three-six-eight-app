@@ -4,17 +4,16 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Button } from '../components/Button';
 import { Screen } from '../components/Screen';
 import { colors, radii, spacing, typography } from '../theme/theme';
-import { services } from '../data/content';
+import { blogPosts } from '../data/content';
 import type { RootStackParamList } from '../navigation/types';
 
-export function ServiceDetailScreen() {
+export function BlogDetailScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const route = useRoute<RouteProp<RootStackParamList, 'ServiceDetail'>>();
+  const route = useRoute<RouteProp<RootStackParamList, 'BlogDetail'>>();
   const insets = useSafeAreaInsets();
-  const service = services.find((s) => s.id === route.params.serviceId) ?? services[0];
+  const post = blogPosts.find((p) => p.id === route.params.postId) ?? blogPosts[0];
 
   return (
     <Screen>
@@ -22,21 +21,17 @@ export function ServiceDetailScreen() {
         <Pressable onPress={() => navigation.goBack()} style={styles.backButton} hitSlop={12}>
           <Ionicons name="arrow-back" size={20} color={colors.onInk} />
         </Pressable>
-        <View style={styles.iconBadge}>
-          <Ionicons name={service.icon} size={26} color={colors.accent} />
-        </View>
-        <Text style={styles.title}>{service.name}</Text>
-        <Text style={styles.summary}>{service.summary}</Text>
+        <Text style={styles.readTime}>{post.readTime}</Text>
+        <Text style={styles.title}>{post.title}</Text>
       </View>
 
       <View style={styles.body}>
-        <Image source={service.image} style={styles.photo} resizeMode="cover" />
-        <Text style={styles.description}>{service.description}</Text>
-        <Button
-          label="Make Appointment"
-          onPress={() => navigation.navigate('Appointment')}
-          style={{ marginTop: spacing.xl }}
-        />
+        <Image source={post.image} style={styles.photo} resizeMode="cover" />
+        {post.body.split('\n\n').map((paragraph, index) => (
+          <Text key={index} style={styles.paragraph}>
+            {paragraph}
+          </Text>
+        ))}
       </View>
     </Screen>
   );
@@ -59,22 +54,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: spacing.lg,
   },
-  iconBadge: {
-    width: 52,
-    height: 52,
-    borderRadius: radii.md,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    alignItems: 'center',
-    justifyContent: 'center',
+  readTime: {
+    ...typography.label,
+    color: colors.accent,
+    marginTop: spacing.md,
   },
   title: {
     ...typography.display,
     color: colors.onInk,
-    marginTop: spacing.md,
-  },
-  summary: {
-    ...typography.body,
-    color: '#E3B0C4',
     marginTop: spacing.xs,
   },
   body: {
@@ -87,8 +74,9 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
     backgroundColor: colors.border,
   },
-  description: {
+  paragraph: {
     ...typography.body,
     color: colors.inkSoft,
+    marginBottom: spacing.md,
   },
 });

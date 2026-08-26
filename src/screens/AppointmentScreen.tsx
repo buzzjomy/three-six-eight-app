@@ -70,6 +70,10 @@ export function AppointmentScreen() {
     Linking.openURL(`https://wa.me/${contact.whatsapp}?text=${text}`);
   };
 
+  const callToBook = () => {
+    Linking.openURL(`tel:${contact.phones[0].replace(/\s+/g, '')}`);
+  };
+
   return (
     <Screen>
       <View style={[styles.header, { paddingTop: insets.top + spacing.md }]}>
@@ -137,11 +141,17 @@ export function AppointmentScreen() {
           onPress={submitByWhatsapp}
           style={{ marginTop: spacing.sm }}
         />
+        <Button
+          label="Call to Book"
+          variant="outline"
+          onPress={callToBook}
+          style={{ marginTop: spacing.sm }}
+        />
 
         <Text style={styles.disclaimer}>
-          Sending a request opens your email or WhatsApp app with the details pre-filled. This
-          does not automatically confirm your appointment — we will get back to you to confirm
-          the slot.
+          Sending a request opens your email or WhatsApp app with the details pre-filled, or
+          starts a call. This does not automatically confirm your appointment — we will get back
+          to you to confirm the slot.
         </Text>
       </View>
     </Screen>
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     ...typography.body,
-    color: '#C7C6D6',
+    color: '#E3B0C4',
     marginTop: spacing.xs,
   },
   form: {
