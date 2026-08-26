@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { colors, spacing, typography } from '../theme/theme';
+
+const DESKTOP_BREAKPOINT = 768;
 
 type Props = {
   eyebrow?: string;
@@ -10,11 +12,18 @@ type Props = {
 };
 
 export function Section({ eyebrow, title, body, children }: Props) {
+  const { width } = useWindowDimensions();
+  const isDesktop = width >= DESKTOP_BREAKPOINT;
+
   return (
     <View style={styles.container}>
-      {eyebrow ? <Text style={styles.eyebrow}>{eyebrow.toUpperCase()}</Text> : null}
-      <Text style={styles.title}>{title}</Text>
-      {body ? <Text style={styles.body}>{body}</Text> : null}
+      {eyebrow ? (
+        <Text style={[styles.eyebrow, isDesktop && styles.textCenter]}>
+          {eyebrow.toUpperCase()}
+        </Text>
+      ) : null}
+      <Text style={[styles.title, isDesktop && styles.textCenter]}>{title}</Text>
+      {body ? <Text style={[styles.body, isDesktop && styles.textCenter]}>{body}</Text> : null}
       {children}
     </View>
   );
@@ -38,5 +47,8 @@ const styles = StyleSheet.create({
     ...typography.body,
     color: colors.muted,
     marginTop: spacing.sm,
+  },
+  textCenter: {
+    textAlign: 'center',
   },
 });

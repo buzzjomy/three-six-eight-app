@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     ...typography.body,
-    color: '#C7C6D6',
+    color: '#E3B0C4',
     marginTop: spacing.xs,
   },
 });

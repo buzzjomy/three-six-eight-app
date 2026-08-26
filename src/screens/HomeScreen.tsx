@@ -40,7 +40,7 @@ export function HomeScreen() {
           label="View Services"
           variant="outline"
           onPress={() => navigation.navigate('Services')}
-          style={styles.flexButton}
+          style={styles.heroOutlineButton}
         />
       </View>
 
@@ -118,6 +118,11 @@ const styles = StyleSheet.create({
   flexButton: {
     flex: 1,
   },
+  heroOutlineButton: {
+    flex: 1,
+    backgroundColor: colors.surface,
+    borderColor: colors.surface,
+  },
   aboutButton: {
     marginTop: spacing.md,
     alignSelf: 'flex-start',
@@ -141,7 +146,7 @@ const styles = StyleSheet.create({
   },
   founderTitle: {
     ...typography.bodySmall,
-    color: '#C7C6D6',
+    color: '#E3B0C4',
   },
   appointmentCard: {
     marginTop: spacing.xl,

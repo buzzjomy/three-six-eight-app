@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/theme';
 import { brand } from '../data/content';
 
@@ -7,9 +7,7 @@ export function BrandMark({ dark = false, compact = false }: { dark?: boolean; c
   const textColor = dark ? colors.onInk : colors.ink;
   return (
     <View style={styles.row}>
-      <View style={styles.badge}>
-        <Text style={styles.badgeText}>{brand.shortName}</Text>
-      </View>
+      <Image source={require('../../assets/logo-368.png')} style={styles.badge} resizeMode="contain" />
       {!compact && (
         <View>
           <Text style={[styles.name, { color: textColor }]}>{brand.name.toUpperCase()}</Text>
@@ -26,21 +24,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 10,
   },
   badge: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    backgroundColor: colors.ink,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  badgeText: {
-    color: colors.accent,
-    fontWeight: '700',
-    fontSize: 14,
-    letterSpacing: 0.5,
+    height: 48,
+    aspectRatio: 480 / 651,
   },
   name: {
     fontSize: 15,

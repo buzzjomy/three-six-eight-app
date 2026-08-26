@@ -20,13 +20,15 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "gh-pages": "^6.3.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "CI=1 EXPO_NO_TELEMETRY=1 expo start --ios",
-    "web": "CI=1 EXPO_NO_TELEMETRY=1 expo start --web"
+    "web": "CI=1 EXPO_NO_TELEMETRY=1 expo start --web",
+    "deploy": "GH_PAGES=true npx expo export -p web --output-dir dist && npx gh-pages -d dist -t"
   },
   "private": true
 }

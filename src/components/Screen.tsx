@@ -1,6 +1,9 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
 import { colors } from '../theme/theme';
+
+const DESKTOP_BREAKPOINT = 768;
+const DESKTOP_MAX_WIDTH = 640;
 
 type Props = {
   children: React.ReactNode;
@@ -9,8 +12,16 @@ type Props = {
 };
 
 export function Screen({ children, scroll = true, style }: Props) {
+  const { width } = useWindowDimensions();
+  const isDesktop = width >= DESKTOP_BREAKPOINT;
+  const inner = (
+    <View style={isDesktop && styles.innerDesktop}>{children}</View>
+  );
+
   if (!scroll) {
-    return <View style={[styles.container, style]}>{children}</View>;
+    return (
+      <View style={[styles.container, style]}>{inner}</View>
+    );
   }
   return (
     <ScrollView
@@ -18,7 +29,7 @@ export function Screen({ children, scroll = true, style }: Props) {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      {children}
+      {inner}
     </ScrollView>
   );
 }
@@ -30,5 +41,10 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingBottom: 48,
+  },
+  innerDesktop: {
+    width: '100%',
+    maxWidth: DESKTOP_MAX_WIDTH,
+    alignSelf: 'center',
   },
 });
