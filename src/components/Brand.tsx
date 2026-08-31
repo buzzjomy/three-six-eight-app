@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   badge: {
-    height: 56,
+    height: 176,
     aspectRatio: 479 / 510,
   },
   name: {
