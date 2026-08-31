@@ -7,7 +7,7 @@ export function BrandMark({ dark = false, compact = false }: { dark?: boolean; c
   const textColor = dark ? colors.onInk : colors.ink;
   return (
     <View style={styles.row}>
-      <Image source={require('../../assets/logo-368.png')} style={styles.badge} resizeMode="contain" />
+      <Image source={require('../../assets/logo.png')} style={styles.badge} resizeMode="contain" />
       {!compact && (
         <View>
           <Text style={[styles.name, { color: textColor }]}>{brand.name.toUpperCase()}</Text>
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   badge: {
-    height: 48,
-    aspectRatio: 480 / 651,
+    height: 56,
+    aspectRatio: 479 / 510,
   },
   name: {
     fontSize: 15,

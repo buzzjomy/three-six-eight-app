@@ -1,9 +1,9 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const brand = {
-  name: 'Three Six Eight',
-  shortName: '368',
-  tagline: 'Beauty & Wellness',
+  name: "PRA DEEP'S",
+  shortName: 'PD',
+  tagline: 'Beauty Clinic & Academy',
   since: 1987,
 };
 
@@ -35,7 +35,7 @@ export const stats = [
 export const highlights = [
   {
     title: 'International standards',
-    body: 'Three Six Eight guarantees global standards in beauty care. Staff are trained under the best experts in the field.',
+    body: "PRA DEEP'S guarantees global standards in beauty care. Staff are trained under the best experts in the field.",
     icon: 'globe-outline' as const,
   },
   {
@@ -155,16 +155,16 @@ export const blogPosts: BlogPost[] = [
 
 export const founder = {
   name: 'Nimmi Sheriff',
-  title: 'Founder, Three Six Eight',
+  title: "Founder, PRA DEEP'S",
 };
 
 export const aboutCopy = {
   intro:
     'By beauty and wellness, our focus is not on appearance. We create an experience that cherishes who we are, purely to ourselves, radiating our inner self to others. This is where skin and hair are made to complement the occasion, what we wear, and the tone of the ceremony. This is not about how we are looked at by others, but about regaining our confidence and mindfulness in our treasured moments.',
   mission:
-    'Three Six Eight is a premium beauty service centre with a salon, spa, and clinic. We offer a full range of services in hair care, skin care, nail care, and make-up. Our bridal section offers packages that suit every occasion.',
+    "PRA DEEP'S is a premium beauty service centre with a salon, spa, and clinic. We offer a full range of services in hair care, skin care, nail care, and make-up. Our bridal section offers packages that suit every occasion.",
   pioneer:
-    'Three Six Eight is a pioneer in introducing many beauty procedures in Kerala, including hair colouring, microdermabrasion, and interventional procedures, across a three-floor centre.',
+    "PRA DEEP'S is a pioneer in introducing many beauty procedures in Kerala, including hair colouring, microdermabrasion, and interventional procedures, across a three-floor centre.",
   motive:
     'We work to bring people to the forefront of society who have lost their self-esteem due to skin conditions, helping clients from around the globe feel confident again.',
 };
