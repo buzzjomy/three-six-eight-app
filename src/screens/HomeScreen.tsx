@@ -26,7 +26,7 @@ export function HomeScreen() {
   return (
     <Screen>
       <PageHeader
-        title={`Thousands of women trust ${brand.name}.`}
+        title={`Thousands of clients trust ${brand.name}.`}
         subtitle={`Beauty & wellness, since ${brand.since}.`}
       />
 
