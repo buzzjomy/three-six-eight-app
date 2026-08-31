@@ -8,15 +8,16 @@ export const brand = {
 };
 
 export const contact = {
-  address: 'Munayam Road, Aaram Kallu, Thrissur 680620',
-  phones: ['+91 98509 40368'],
-  email: 'buzzjomy@gmail.com',
+  address: 'Chembukavu, Cheroor Road, Thrissur, India',
+  phones: ['+91 89432 93978'],
+  email: 'deepudeepus557@gmail.com',
   hours: [
     { days: 'Monday - Saturday', time: '09:30 AM - 06:30 PM' },
     { days: 'Sunday', time: '10:00 AM - 05:00 PM' },
   ],
-  mapsQuery: 'Munayam Road, Aaram Kallu, Thrissur 680620',
-  whatsapp: '919850940368',
+  mapsQuery: 'Chembukavu, Cheroor Road, Thrissur, India',
+  whatsapp: '919961666557',
+  whatsappDisplay: '+91 99616 66557',
   social: {
     facebook: 'https://facebook.com',
     instagram: 'https://instagram.com',
@@ -154,13 +155,13 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const founder = {
-  name: 'Nimmi Sheriff',
+  name: 'Pradeep',
   title: "Founder, PRA DEEP'S",
 };
 
 export const aboutCopy = {
   intro:
-    'By beauty and wellness, our focus is not on appearance. We create an experience that cherishes who we are, purely to ourselves, radiating our inner self to others. This is where skin and hair are made to complement the occasion, what we wear, and the tone of the ceremony. This is not about how we are looked at by others, but about regaining our confidence and mindfulness in our treasured moments.',
+    'In beauty and wellness, our focus is not on appearance alone. We create an experience that lets us cherish who we are, radiating that inner self outward to others. This is where skin and hair are made to complement the occasion, what we wear, and the tone of the ceremony. This is not about how we are looked at by others, but about regaining our confidence and mindfulness in our treasured moments.',
   mission:
     "PRA DEEP'S is a premium beauty service centre with a salon, spa, and clinic. We offer a full range of services in hair care, skin care, nail care, and make-up. Our bridal section offers packages that suit every occasion.",
   pioneer:

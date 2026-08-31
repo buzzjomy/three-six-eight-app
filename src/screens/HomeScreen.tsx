@@ -64,7 +64,9 @@ export function HomeScreen() {
       </Section>
 
       <View style={styles.founderCard}>
-        <Text style={styles.founderQuote}>“{aboutCopy.intro.slice(0, 140)}…”</Text>
+        <Text style={styles.founderQuote}>
+          “{aboutCopy.intro.split('. ').slice(0, 2).join('. ')}.”
+        </Text>
         <Text style={styles.founderName}>{founder.name}</Text>
         <Text style={styles.founderTitle}>{founder.title}</Text>
       </View>

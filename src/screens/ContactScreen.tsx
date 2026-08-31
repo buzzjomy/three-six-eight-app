@@ -57,7 +57,7 @@ export function ContactScreen() {
           value={contact.phones.join(' / ')}
           onPress={() => call(contact.phones[0])}
         />
-        <ContactRow icon="logo-whatsapp" label="WhatsApp" value={contact.phones[0]} onPress={whatsapp} />
+        <ContactRow icon="logo-whatsapp" label="WhatsApp" value={contact.whatsappDisplay} onPress={whatsapp} />
         <ContactRow icon="mail-outline" label="Email" value={contact.email} onPress={email} />
         <ContactRow icon="location-outline" label="Address" value={contact.address} onPress={openMaps} />
       </Section>
