@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, useWindowDimensions, View, ViewStyle } from 're
 import { colors } from '../theme/theme';
 
 const DESKTOP_BREAKPOINT = 768;
-const DESKTOP_MAX_WIDTH = 640;
+const DESKTOP_MAX_WIDTH = 900;
 
 type Props = {
   children: React.ReactNode;
