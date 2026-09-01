@@ -8,7 +8,7 @@ import { HighlightCard } from '../components/Cards';
 import { Screen } from '../components/Screen';
 import { Section } from '../components/Section';
 import { colors, spacing, typography } from '../theme/theme';
-import { aboutCopy, brand, founder, highlights } from '../data/content';
+import { aboutCopy, founder, highlights } from '../data/content';
 import type { RootStackParamList } from '../navigation/types';
 
 export function AboutScreen() {
@@ -25,7 +25,6 @@ export function AboutScreen() {
       </View>
 
       <Section
-        eyebrow={`Since ${brand.since}`}
         title="A salon, spa, and clinic under one roof"
         body={aboutCopy.mission}
       />

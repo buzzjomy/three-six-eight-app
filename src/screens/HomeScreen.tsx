@@ -27,7 +27,7 @@ export function HomeScreen() {
     <Screen>
       <PageHeader
         title={`Thousands of clients trust ${brand.name}.`}
-        subtitle={`Beauty & wellness, since ${brand.since}.`}
+        subtitle="Beauty & wellness for everyone."
       />
 
       <View style={styles.ctaRow}>
@@ -46,7 +46,7 @@ export function HomeScreen() {
 
       <Section
         eyebrow="Who we are"
-        title={`We Provide The Best Beauty Services Since ${brand.since}`}
+        title="We Provide The Best Beauty Services"
         body={aboutCopy.mission}
       >
         <Button

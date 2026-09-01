@@ -4,7 +4,6 @@ export const brand = {
   name: "PRA DEEP'S",
   shortName: 'PD',
   tagline: 'Beauty Clinic & Academy',
-  since: 1987,
 };
 
 export const contact = {
@@ -19,17 +18,75 @@ export const contact = {
   whatsapp: '919961666557',
   whatsappDisplay: '+91 99616 66557',
   social: {
-    facebook: 'https://facebook.com',
+    facebook: 'https://www.facebook.com/share/1Bgk2i9Mvr/',
+    facebookVideos: 'https://www.facebook.com/share/1Bgk2i9Mvr/',
     instagram: 'https://instagram.com',
     twitter: 'https://twitter.com',
     youtube: 'https://youtube.com',
   },
 };
 
+export type VideoLink = {
+  id: string;
+  label: string;
+  url: string;
+  thumbnail: ImageSourcePropType;
+};
+
+export const videos: VideoLink[] = [
+  {
+    id: 'video-1',
+    label: '26 Times Smoothening',
+    url: 'https://www.facebook.com/share/v/1Tqq2WHxiG/',
+    thumbnail: require('../../assets/videos/video-1.jpg'),
+  },
+  {
+    id: 'video-2',
+    label: 'Hair Colour Session',
+    url: 'https://www.facebook.com/share/r/1Bzv7fy4e5/',
+    thumbnail: require('../../assets/videos/video-2.jpg'),
+  },
+  {
+    id: 'video-3',
+    label: 'Chemical Peel Treatment',
+    url: 'https://www.facebook.com/share/v/19RmzsvYjU/',
+    thumbnail: require('../../assets/videos/video-3.jpg'),
+  },
+  {
+    id: 'video-4',
+    label: 'Blowdry Brush: Size & Uses',
+    url: 'https://www.facebook.com/share/v/18oPWvx6jb/',
+    thumbnail: require('../../assets/videos/video-4.jpg'),
+  },
+  {
+    id: 'video-5',
+    label: 'Meet the Team',
+    url: 'https://www.facebook.com/share/v/1Jhr8G7wtx/',
+    thumbnail: require('../../assets/videos/video-5.jpg'),
+  },
+  {
+    id: 'video-6',
+    label: 'A Word From Us',
+    url: 'https://www.facebook.com/share/v/1FFL8v29MZ/',
+    thumbnail: require('../../assets/videos/video-6.jpg'),
+  },
+  {
+    id: 'video-7',
+    label: '37th Smoothening Testimonial',
+    url: 'https://www.facebook.com/share/v/1N3GpwGDBw/',
+    thumbnail: require('../../assets/videos/video-7.jpg'),
+  },
+  {
+    id: 'video-8',
+    label: 'Main Tips for Hair Serum',
+    url: 'https://www.facebook.com/share/r/1QURL2cv7c/',
+    thumbnail: require('../../assets/videos/video-8.jpg'),
+  },
+];
+
 export const stats = [
   { label: 'Customers', value: '25,000+' },
   { label: 'Bridal Makeups Monthly', value: '40+' },
-  { label: 'Years of Experience', value: '35+' },
   { label: 'Staff', value: '60+' },
 ];
 
