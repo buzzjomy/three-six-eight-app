@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, LayoutChangeEvent, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { colors, radii, spacing, typography } from '../theme/theme';
 import type { BlogPost, Service, VideoLink } from '../data/content';
 
@@ -69,21 +69,69 @@ export function BlogCard({ post, onPress }: { post: BlogPost; onPress?: () => vo
   );
 }
 
-export function VideoLinkCard({ video, onPress }: { video: VideoLink; onPress?: () => void }) {
+export function VideoGrid({ videos, onPressVideo }: { videos: VideoLink[]; onPressVideo: (video: VideoLink) => void }) {
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [scrollX, setScrollX] = useState(0);
+  const scrollRef = React.useRef<ScrollView>(null);
+  const onLayout = (e: LayoutChangeEvent) => setContainerWidth(e.nativeEvent.layout.width);
+  const cardWidth = containerWidth > 0 ? (containerWidth - spacing.sm) / 2 : undefined;
+  const maxScrollX = Math.max(0, videos.length * ((cardWidth ?? 0) + spacing.sm) - spacing.sm - containerWidth);
+
+  const scrollByPage = (direction: 1 | -1) => {
+    const page = containerWidth || 0;
+    const nextX = Math.min(Math.max(scrollX + direction * page, 0), maxScrollX);
+    scrollRef.current?.scrollTo({ x: nextX, animated: true });
+    setScrollX(nextX);
+  };
+
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [styles.videoCard, pressed && styles.pressed]}
-    >
-      <View style={styles.videoThumbWrap}>
-        <Image source={video.thumbnail} style={styles.videoThumb} resizeMode="cover" />
-        <View style={styles.playOverlay}>
-          <Ionicons name="play" size={16} color="#FFFFFF" />
-        </View>
+    <View onLayout={onLayout}>
+      <ScrollView
+        ref={scrollRef}
+        horizontal
+        showsHorizontalScrollIndicator
+        onScroll={(e) => setScrollX(e.nativeEvent.contentOffset.x)}
+        scrollEventThrottle={16}
+        contentContainerStyle={styles.videoScrollContent}
+      >
+        {videos.map((video) => (
+          <Pressable
+            key={video.id}
+            onPress={() => onPressVideo(video)}
+            style={({ pressed }) => [styles.videoCard, cardWidth ? { width: cardWidth } : null, pressed && styles.pressed]}
+          >
+            <View style={styles.videoLabelRow}>
+              <Text style={styles.videoLabel} numberOfLines={2}>
+                {video.label}
+              </Text>
+              <Ionicons name="logo-facebook" size={14} color={colors.muted} />
+            </View>
+            <View style={styles.videoThumbWrap}>
+              <Image source={video.thumbnail} style={styles.videoThumb} resizeMode="cover" />
+              <View style={styles.playOverlay}>
+                <Ionicons name="play" size={24} color="#FFFFFF" />
+              </View>
+            </View>
+          </Pressable>
+        ))}
+      </ScrollView>
+      <View style={styles.videoScrollControls}>
+        <Pressable
+          onPress={() => scrollByPage(-1)}
+          disabled={scrollX <= 0}
+          style={[styles.videoScrollButton, scrollX <= 0 && styles.videoScrollButtonDisabled]}
+        >
+          <Ionicons name="chevron-back" size={18} color={colors.ink} />
+        </Pressable>
+        <Pressable
+          onPress={() => scrollByPage(1)}
+          disabled={scrollX >= maxScrollX}
+          style={[styles.videoScrollButton, scrollX >= maxScrollX && styles.videoScrollButtonDisabled]}
+        >
+          <Ionicons name="chevron-forward" size={18} color={colors.ink} />
+        </Pressable>
       </View>
-      <Text style={styles.videoLabel}>{video.label}</Text>
-      <Ionicons name="logo-facebook" size={18} color={colors.muted} />
-    </Pressable>
+    </View>
   );
 }
 
@@ -204,25 +252,52 @@ const styles = StyleSheet.create({
     color: colors.accentDark,
     marginTop: spacing.sm,
   },
-  videoCard: {
+  videoScrollContent: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.md,
-    backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    padding: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border,
+    gap: spacing.sm,
+    marginTop: spacing.md,
+  },
+  videoScrollControls: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: spacing.sm,
     marginTop: spacing.sm,
   },
+  videoScrollButton: {
+    width: 36,
+    height: 36,
+    borderRadius: radii.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  videoScrollButtonDisabled: {
+    opacity: 0.35,
+  },
+  videoCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    padding: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  videoLabelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    marginBottom: spacing.sm,
+  },
   videoLabel: {
-    ...typography.h2,
+    ...typography.bodySmall,
+    fontWeight: '600',
     color: colors.ink,
-    flex: 1,
+    flexShrink: 1,
   },
   videoThumbWrap: {
-    width: 56,
-    height: 56,
+    width: '100%',
+    aspectRatio: 9 / 16,
     borderRadius: radii.md,
     overflow: 'hidden',
     backgroundColor: colors.border,
